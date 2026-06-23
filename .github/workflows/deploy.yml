@@ -27,21 +27,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 8
-
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: pnpm install
+      - name: Force Install Dependencies
+        run: npm install --legacy-peer-deps
 
       - name: Build project
-        run: pnpm build
+        run: npm run build --if-present
         env:
           BASE_PATH: /jadenfinalupcattransfer/
 
